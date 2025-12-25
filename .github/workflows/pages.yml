@@ -2,7 +2,8 @@ name: Deploy Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,9 +18,23 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
+
+      - name: Setup PowerShell
+        uses: PowerShell/PowerShell@v1
+
+      - name: Download tldr.zip
+        run: |
+          mkdir -p vendor/tldr
+          curl -L "https://codeload.github.com/tldr-pages/tldr/zip/refs/heads/main" -o vendor/tldr/tldr.zip
+
+      - name: Build site
+        shell: pwsh
+        run: |
+          pwsh -NoProfile -File ./tools/build-site.ps1 -Source ./vendor/tldr/tldr.zip -Clean
+
       - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: site
       - uses: actions/deploy-pages@v4
