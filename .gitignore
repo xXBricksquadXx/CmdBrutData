@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+*.user
+*.suo
+*.cache
+*.log
+__pycache__/
+*.pyc
+site/pages/
+site/index.json
+vendor/tldr/
+*.zip
+node_modules/
+dist/

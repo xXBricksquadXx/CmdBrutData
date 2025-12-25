@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-color-mode="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CmdBrut Data</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="title">CmdBrut</div>
+      <div class="subtitle">Static search UI (index.json + pages)</div>
+    </div>
+    <div class="top-actions">
+      <button id="themeBtn" class="btn" type="button">Theme</button>
+      <a class="btn" href="index.json" target="_blank" rel="noreferrer">index.json</a>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Search</h2>
+      <div class="searchbox">
+        <input id="q" autocomplete="off" spellcheck="false" placeholder="tar, git, systemctl…" />
+        <ul id="suggest" class="suggest"></ul>
+      </div>
+
+      <div class="meta">
+        <span id="count"></span>
+        <span class="muted">Enter opens • ↑/↓ selects</span>
+      </div>
+
+      <ul id="results" class="results"></ul>
+    </section>
+
+    <section class="card">
+      <div class="dochead">
+        <h2 id="docTitle">Doc</h2>
+        <a id="rawLink" class="btn small" href="#" target="_blank" rel="noreferrer" style="display:none">raw</a>
+      </div>
+      <div id="doc" class="doc">Select a command.</div>
+    </section>
+  </main>
+
+  <script src="assets/marked.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
